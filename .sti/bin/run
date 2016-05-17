@@ -7,4 +7,4 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-exec java -Djava.security.egd=file:/dev/./urandom -jar /opt/openshift/qzr-web-1.0.0-SNAPSHOT.jar --spring.profiles.active=scratch,drools
+exec java -Djava.security.egd=file:/dev/./urandom -jar /opt/openshift/qzr-web-1.0.0-SNAPSHOT.jar --spring.profiles.active=scratch,drools --spring.thymeleaf.mode=LEGACYHTML5
