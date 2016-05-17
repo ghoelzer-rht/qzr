@@ -72,16 +72,17 @@ if [ -f "$LOCAL_SOURCE_DIR/pom.xml" ]; then
     exit $ERR
   fi
 
-  # List out possible build targets
-  ls -l $LOCAL_SOURCE_DIR/qzr-web
-	ls -l $LOCAL_SOURCE_DIR/sctrcd-drools
+  # Debugging List out possible build targets
+  # ls -l $LOCAL_SOURCE_DIR/qzr-web
+	# ls -l $LOCAL_SOURCE_DIR/sctrcd-drools
 
-	echo "stopping build here for debugging"
-	exit 1
+	# echo "stopping build here for debugging"
+	# exit 1
 
   # Copy built artifacts (if any!) from the target/ directory
   # to the $DEPLOY_DIR directory for later deployment
-  copy_artifacts target
+  copy_artifacts qzr-web/target
+	copy_artifacts sctrcd-drools/target
 
   # clean up after maven
   mvn clean
@@ -137,11 +138,10 @@ fi
 #   cp -v $LOCAL_SOURCE_DIR/configuration/* $ARTIFACTS_HOME
 # fi
 
-# As SpringBoot you should only have 1 fat jar
-if [ $(ls /opt/openshift/*.jar | wc -l) -eq 1 ]; then
-  mv /opt/openshift/*.jar /opt/openshift/app.jar
-  [ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1
-  echo "Application jar file is located in /opt/openshift/app.jar"
+# With this SpringBoot App you should only have 2 fat jar
+if [ $(ls /opt/openshift/*.jar | wc -l) -eq 2 ]; then
+  echo "Application jar files are located in /opt/openshift/*"
+	ls -l /opt/openshift
 else
   exit 1
 fi
