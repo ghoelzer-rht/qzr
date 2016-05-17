@@ -139,9 +139,10 @@ fi
 # fi
 
 # With this SpringBoot App you should only have 2 fat jar
-if [ $(ls /opt/openshift/*.jar | wc -l) -eq 2 ]; then
+if [ $(ls /opt/openshift/*.jar | wc -l) -eq 3 ]; then
   echo "Application jar files are located in /opt/openshift/*"
 	ls -l /opt/openshift
 else
+	echo "*** Error, number of build artifacts different than expected"
   exit 1
 fi
